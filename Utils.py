@@ -3,13 +3,13 @@ import os
 from PIL import Image as image
 from PIL import ImageDraw
 from PIL import ImageFont
-import random
+import uuid
 
 fileDir="pic/"
 fileDest="CleanPic/"
 def convert(fileExt):
     for file in glob(fileDir+'*.'+fileExt):
-        ranName=round(random.uniform(100000,999999)*10000)
+        ranName= uuid.uuid4().time_low
         try:
 
             name, ext = os.path.splitext(file)
@@ -34,14 +34,26 @@ def addnumber():
     draw=ImageDraw.Draw(img)
     fillcolor = "#ff0000"  # R,G,B的值
     width, height = img.size
-    ranNum=random.uniform(10000000,999999999)
+    ranNum=uuid.uuid4().time_low
     draw.text((0, 0), str(ranNum), font=font, fill="#000000")
     img.save("2.jpg")
 
+def convertPic():
+    convert("jpg")
+    convert("png")
+    convert("gif")
+    convert("jpeg")
 
-#convert("jpg")
-#convert("png")
-#convert("gif")
-#convert("jpeg")
-#deleteFile()
-addnumber()
+def getLog():
+    f=open("1.log")
+    o=open("log.log",'w')
+    for line in f:
+        if(line.startswith("LOG")):
+            o.write(line)
+    f.close()
+    o.close()
+
+
+# deleteFile()
+# addnumber()
+getLog()
