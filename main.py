@@ -40,7 +40,6 @@ with tf.Session() as sess:
     for imageFile in imgFiles:
         image_data = tf.gfile.FastGFile(varPath + "/" + imageFile, 'rb').read()
 
-        #print(varPath + "/" + imageFile)
         predictions = sess.run(softmax_tensor, \
                                {'DecodeJpeg/contents:0': image_data})
 
@@ -49,8 +48,6 @@ with tf.Session() as sess:
         firstElt = top_k[0];
 
         newFileName = label_lines[firstElt] + "--" + str(predictions[0][firstElt])[2:7] + ".jpg"
-        #print(newFileName)
-        #copyfile(varPath + "/" + imageFile, destDir + "/" + newFileName)
 
 
         for node_id in top_k:
