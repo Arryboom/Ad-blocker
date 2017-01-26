@@ -9,14 +9,14 @@ from mitmproxy.script import concurrent
 # Loads label file, strips off carriage return
 
 print("+++++++++LOADING!")
-with tf.gfile.FastGFile("/Users/hsin/Documents/Project/Python/labelFlower/retrained_graph.pb", 'rb') as f:
+with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
     _ = tf.import_graph_def(graph_def, name='')
 sess = tf.Session()
 softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
 print("++++++++++LOADED")
-erFilePath = "/Users/hsin/Documents/Project/Python/labelFlower/1.jpg"
+erFilePath = "1.jpg"
 
 
 @concurrent
