@@ -1,6 +1,8 @@
 from glob import glob
 import os
 from PIL import Image as image
+from PIL import ImageDraw
+from PIL import ImageFont
 import random
 
 fileDir="pic/"
@@ -25,9 +27,21 @@ def deleteFile():
                 os.remove(os.path.abspath(file))
             except Exception as exc:
                 print(str(exc))
-            
-convert("jpg")
-convert("png")
-convert("gif")
-convert("jpeg")
+
+def addnumber():
+    font = ImageFont.load_default().font
+    img=image.open("1.jpg")
+    draw=ImageDraw.Draw(img)
+    fillcolor = "#ff0000"  # R,G,B的值
+    width, height = img.size
+    ranNum=random.uniform(10000000,999999999)
+    draw.text((0, 0), str(ranNum), font=font, fill="#000000")
+    img.save("2.jpg")
+
+
+#convert("jpg")
+#convert("png")
+#convert("gif")
+#convert("jpeg")
 #deleteFile()
+addnumber()
